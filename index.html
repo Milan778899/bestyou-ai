@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BestYou AI - Don't Get Replaced</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body { font-family: 'Inter', system-ui, sans-serif; }
-  </style>
 </head>
 <body class="bg-zinc-950 text-white">
   <div class="max-w-5xl mx-auto px-6 py-24 text-center">
@@ -20,66 +17,48 @@
     </p>
 
     <div class="bg-zinc-900 rounded-3xl overflow-hidden shadow-2xl mb-16">
-      <video class="w-full" controls autoplay loop muted>
-        <source src="YOUR_VIDEO_URL_HERE.mp4" type="video/mp4">
-        Your browser does not support the video tag.
+      <video class="w-full" controls autoplay loop muted playsinline>
+        <source src="https://replit.com/@javella0285/Best-You-AI#attachments/202604241815_(1).mp4" type="video/mp4">
       </video>
     </div>
 
-    <div class="flex flex-col sm:flex-row gap-6 justify-center">
-      <a href="#pricing" 
-         class="bg-white text-black px-14 py-6 rounded-2xl text-2xl font-semibold hover:bg-zinc-200 transition">
-        See Plans & Pricing
-      </a>
-      <a href="#" 
-         class="border-2 border-white px-14 py-6 rounded-2xl text-2xl font-semibold hover:bg-white hover:text-black transition">
-        Try It Free First
+    <div class="flex justify-center">
+      <a href="#waitlist" class="bg-emerald-500 hover:bg-emerald-600 text-black px-16 py-6 rounded-2xl text-3xl font-bold transition">
+        Join the Waitlist - Get Early Access
       </a>
     </div>
   </div>
 
-  <div id="pricing" class="bg-zinc-900 py-20">
-    <div class="max-w-5xl mx-auto px-6">
-      <h2 class="text-5xl font-bold text-center mb-4">Choose Your Edge</h2>
-      <p class="text-xl text-zinc-400 text-center mb-16">The longer you wait, the more you lose</p>
+  <div id="waitlist" class="bg-zinc-900 py-24">
+    <div class="max-w-lg mx-auto px-6 text-center">
+      <h2 class="text-5xl font-bold mb-4">Be First In Line</h2>
+      <p class="text-2xl text-zinc-400 mb-12">
+        First 500 people get lifetime access at the lowest price.
+      </p>
 
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-zinc-800 rounded-3xl p-8">
-          <h3 class="text-2xl font-semibold mb-2">$47</h3>
-          <p class="text-zinc-400 mb-8">1 Month Access</p>
-          <ul class="space-y-4 text-zinc-300 mb-10">
-            <li>Full access to all coaches</li>
-            <li>Daily AI breakthrough updates</li>
-            <li>Email support</li>
-          </ul>
-          <button class="w-full bg-white text-black py-4 rounded-2xl font-semibold">Get Started</button>
-        </div>
-
-        <div class="bg-white text-black rounded-3xl p-8 ring-4 ring-orange-400 scale-105 relative">
-          <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-orange-500 text-white px-6 py-1 rounded-full text-sm font-bold">MOST POPULAR</div>
-          <h3 class="text-2xl font-semibold mb-2">$76</h3>
-          <p class="text-zinc-500 mb-8">$12.67/month • Save $206</p>
-          <ul class="space-y-4 text-zinc-700 mb-10">
-            <li>Everything in 1 Month plan</li>
-            <li>Private community access</li>
-            <li>Monthly live coaching calls</li>
-          </ul>
-          <button class="w-full bg-black text-white py-4 rounded-2xl font-semibold">Get 6 Months Now</button>
-        </div>
-
-        <div class="bg-zinc-800 rounded-3xl p-8">
-          <h3 class="text-2xl font-semibold mb-2">$120</h3>
-          <p class="text-zinc-400 mb-8">$10/month • Save $444</p>
-          <ul class="space-y-4 text-zinc-300 mb-10">
-            <li>Everything in 6 Months plan</li>
-            <li>AI Opportunity Scanner</li>
-            <li>1-on-1 coaching calls</li>
-            <li>Lifetime updates</li>
-          </ul>
-          <button class="w-full bg-white text-black py-4 rounded-2xl font-semibold">Get Lifetime Edge</button>
-        </div>
-      </div>
+      <form id="waitlistForm" class="space-y-6">
+        <input type="email" id="email" placeholder="your@email.com" required
+               class="w-full px-8 py-6 rounded-2xl bg-zinc-800 text-white text-xl focus:outline-none border border-zinc-700">
+        <button type="submit"
+                class="w-full bg-white text-black py-6 rounded-2xl text-2xl font-bold hover:bg-zinc-200 transition">
+          Secure My Spot Now
+        </button>
+      </form>
+      
+      <p id="message" class="mt-6 text-emerald-400 font-medium hidden">You're in! We'll send you early access details soon.</p>
+      <p class="text-zinc-500 mt-8">Spots are limited. Price increases at launch.</p>
     </div>
   </div>
+
+  <script>
+    document.getElementById('waitlistForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      if (email) {
+        document.getElementById('message').classList.remove('hidden');
+        this.reset();
+      }
+    });
+  </script>
 </body>
 </html>
