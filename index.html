@@ -1,64 +1,704 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BestYou AI - Don't Get Replaced</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-zinc-950 text-white">
-  <div class="max-w-5xl mx-auto px-6 py-24 text-center">
-    <h1 class="text-6xl font-bold leading-tight mb-6">
-      Jobs are disappearing.<br>
-      <span class="text-emerald-400">Your income doesn't have to.</span>
-    </h1>
-    <p class="text-2xl text-zinc-400 max-w-3xl mx-auto mb-12">
-      The AI edge that puts you in the top 1%. Real breakthroughs. Real opportunities. Delivered the second they drop.
-    </p>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>html,body{margin:0}img{max-width:100%}</style>
+<title>BestYou</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
+<style>
+  /* Layout: single warm column; one deep contrast band mid-page; a live voice waveform anchors the hero. */
+  :root{
+    --bg:#FBF8F4; --surface:#FFFFFF; --surface-2:#F3EDE5;
+    --ink:#211B16; --muted:#6E645B; --line:#E8E0D5;
+    --accent:#DC4E2B; --accent-ink:#B23C1F; --accent-soft:#F7DACE;
+    --deep:#242038; --deep-fg:#F2EEE5; --deep-muted:#B7B0C6; --deep-line:#3B3556;
+    --display:"Fraunces",Georgia,"Times New Roman",serif;
+    --body:"Hanken Grotesk",system-ui,-apple-system,Segoe UI,sans-serif;
+    --maxw:1080px; --radius:16px;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --bg:#14110C; --surface:#1D1912; --surface-2:#241F17;
+    --ink:#F1EADE; --muted:#A99E91; --line:#322A1F;
+    --accent:#F0663F; --accent-ink:#F6937A; --accent-soft:#3A2419;
+    --deep:#191630; --deep-fg:#F1EADE; --deep-muted:#A79FBD; --deep-line:#2E2850;
+    color-scheme:dark;
+  }}
+  :root[data-theme="dark"]{
+    --bg:#14110C; --surface:#1D1912; --surface-2:#241F17;
+    --ink:#F1EADE; --muted:#A99E91; --line:#322A1F;
+    --accent:#F0663F; --accent-ink:#F6937A; --accent-soft:#3A2419;
+    --deep:#191630; --deep-fg:#F1EADE; --deep-muted:#A79FBD; --deep-line:#2E2850;
+    color-scheme:dark;
+  }
 
-    <div class="bg-zinc-900 rounded-3xl overflow-hidden shadow-2xl mb-16">
-      <video class="w-full" controls autoplay loop muted playsinline>
-        <source src="https://replit.com/@javella0285/Best-You-AI#attachments/202604241815_(1).mp4" type="video/mp4">
-      </video>
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.6;
+    -webkit-font-smoothing:antialiased;font-size:17px;overflow-x:hidden}
+  .wrap{max-width:var(--maxw);margin-inline:auto;
+    padding-left:max(20px,env(safe-area-inset-left,0px));
+    padding-right:max(20px,env(safe-area-inset-right,0px))}
+  h1,h2,h3{font-family:var(--display);font-weight:600;text-wrap:balance;line-height:1.08;margin:0}
+  p{margin:0}
+  a{color:inherit}
+  .accent{color:var(--accent-ink)}
+
+  /* Header */
+  header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;
+    background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line)}
+  body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);
+    background:var(--bg);z-index:21}
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;
+    font-size:1.25rem;letter-spacing:-.01em}
+  .dot{width:11px;height:11px;border-radius:50%;background:var(--accent);
+    box-shadow:0 0 0 4px var(--accent-soft)}
+  nav{display:flex;align-items:center;gap:26px;font-weight:500;font-size:.95rem}
+  nav a{text-decoration:none;color:var(--muted)}
+  nav a:hover{color:var(--ink)}
+  .nav-links{display:flex;gap:26px}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--body);font-weight:600;
+    font-size:.98rem;padding:11px 20px;border-radius:999px;border:1px solid transparent;
+    text-decoration:none;cursor:pointer;transition:transform .12s ease,background .15s ease}
+  .btn:hover{transform:translateY(-1px)}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-ghost{background:transparent;border-color:var(--line);color:var(--ink)}
+  @media (max-width:760px){.nav-links{display:none}}
+
+  /* Hero */
+  .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;
+    padding-block:72px 64px}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:.8rem;font-weight:600;
+    letter-spacing:.09em;text-transform:uppercase;color:var(--accent-ink);
+    background:var(--accent-soft);padding:6px 13px;border-radius:999px;margin-bottom:22px}
+  .hero h1{font-size:clamp(2.6rem,6vw,4.3rem);letter-spacing:-.02em}
+  .hero h1 em{font-style:italic;font-weight:500}
+  .hero .lede{font-size:1.18rem;color:var(--muted);margin-top:22px;max-width:30ch}
+  .hero .cta{display:flex;flex-wrap:wrap;gap:13px;margin-top:32px}
+  .hero .note{margin-top:18px;font-size:.9rem;color:var(--muted)}
+  .hero-copy{min-width:0}
+  .voicebox{position:relative;width:100%;min-width:0;aspect-ratio:1/1;border-radius:24px;overflow:hidden;
+    background:linear-gradient(160deg,var(--deep),#171430);border:1px solid var(--deep-line);
+    box-shadow:0 30px 60px -30px rgba(20,16,30,.55)}
+  .voicebox canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .voicebox .cap{position:absolute;left:22px;right:22px;bottom:20px;color:var(--deep-fg);
+    font-size:.92rem;display:flex;align-items:center;gap:10px}
+  .pulse{width:9px;height:9px;border-radius:50%;background:var(--accent);flex:none;
+    animation:pulse 1.8s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.35;transform:scale(.85)}50%{opacity:1;transform:scale(1.15)}}
+  @media (max-width:860px){.hero{grid-template-columns:1fr;gap:34px;padding-block:48px 40px}
+    .voicebox{max-width:420px;order:-1}}
+
+  /* Shift / statement band */
+  .statement{background:var(--deep);color:var(--deep-fg)}
+  .statement .wrap{padding-block:64px}
+  .statement h2{font-size:clamp(1.7rem,3.6vw,2.5rem);max-width:20ch}
+  .statement p{color:var(--deep-muted);margin-top:18px;max-width:58ch;font-size:1.08rem}
+
+  /* Sections */
+  section .wrap{padding-block:64px}
+  .sec-head{max-width:52ch;margin-bottom:40px}
+  .sec-head .kicker{font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--accent-ink)}
+  .sec-head h2{font-size:clamp(1.9rem,4vw,2.7rem);margin-top:12px;letter-spacing:-.01em}
+  .sec-head p{color:var(--muted);margin-top:14px;font-size:1.08rem}
+
+  .grid{display:grid;gap:18px}
+  .cols-4{grid-template-columns:repeat(4,1fr)}
+  .cols-3{grid-template-columns:repeat(3,1fr)}
+  @media (max-width:900px){.cols-4{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:620px){.cols-4,.cols-3{grid-template-columns:1fr}}
+
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 24px;min-width:0}
+  .card .ic{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;
+    background:var(--accent-soft);color:var(--accent-ink);margin-bottom:16px}
+  .card h3{font-size:1.22rem;font-weight:600;letter-spacing:-.01em}
+  .card p{color:var(--muted);margin-top:9px;font-size:.98rem}
+
+  /* Voices */
+  .voice{background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px;min-width:0}
+  .voice .tag{font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--accent-ink)}
+  .voice h3{font-size:1.15rem;margin-top:6px}
+  .voice p{color:var(--muted);font-size:.95rem;margin-top:8px}
+  .mini{display:flex;align-items:flex-end;gap:3px;height:26px;margin-top:16px}
+  .mini i{flex:1;background:var(--accent);border-radius:2px;opacity:.55;display:block}
+
+  /* Steps */
+  .steps{counter-reset:step;display:grid;gap:16px;grid-template-columns:repeat(3,1fr)}
+  @media (max-width:760px){.steps{grid-template-columns:1fr}}
+  .step{position:relative;padding:26px 24px;border:1px solid var(--line);border-radius:var(--radius);
+    background:var(--surface)}
+  .step::before{counter-increment:step;content:counter(step,decimal-leading-zero);
+    font-family:var(--display);font-weight:600;font-size:1rem;color:var(--accent-ink)}
+  .step h3{font-size:1.15rem;margin-top:10px}
+  .step p{color:var(--muted);margin-top:8px;font-size:.96rem}
+
+  /* Pricing */
+  .plan{max-width:420px;margin-inline:auto;background:var(--surface);border:1px solid var(--line);
+    border-radius:20px;padding:34px 30px;box-shadow:0 30px 60px -40px rgba(20,16,30,.4)}
+  .plan-top{text-align:center;padding-bottom:22px;border-bottom:1px solid var(--line)}
+  .plan-name{font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-ink)}
+  .price{display:flex;align-items:baseline;justify-content:center;gap:5px;margin-top:12px}
+  .price .amt{font-family:var(--display);font-weight:600;font-size:3.4rem;letter-spacing:-.02em;line-height:1}
+  .price .per{color:var(--muted);font-size:1.05rem}
+  .plan-sub{color:var(--muted);font-size:.92rem;margin-top:8px}
+  .plan-list{list-style:none;padding:0;margin:24px 0;display:grid;gap:13px}
+  .plan-list li{position:relative;padding-left:28px;font-size:1rem;min-width:0}
+  .plan-list li::before{content:"✓";position:absolute;left:0;top:0;color:var(--accent-ink);font-weight:700}
+  .plan-cta{width:100%;justify-content:center;font-size:1.05rem;padding:14px}
+
+  /* CTA */
+  .final{text-align:center}
+  .final .wrap{padding-block:80px}
+  .final h2{font-size:clamp(2.1rem,5vw,3.2rem);letter-spacing:-.02em;max-width:16ch;margin-inline:auto}
+  .final p{color:var(--muted);margin-top:16px;font-size:1.1rem}
+  .contact{margin-top:28px;display:inline-flex;flex-direction:column;gap:10px;align-items:center}
+  .mailpill{display:inline-flex;align-items:center;gap:10px;background:var(--surface);
+    border:1px solid var(--line);border-radius:999px;padding:10px 18px;font-weight:600;
+    font-family:var(--body)}
+  .copy{cursor:pointer;border:none;background:var(--accent);color:#fff;border-radius:999px;
+    width:28px;height:28px;display:grid;place-items:center;font-size:.8rem}
+  .copied{font-size:.85rem;color:var(--accent-ink);min-height:1.2em}
+
+  footer{border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+  footer .wrap{padding-block:34px;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
+
+  /* Voice narration */
+  .gate{position:fixed;inset:0;z-index:100;display:grid;place-items:center;background:var(--bg);
+    padding-block:24px;padding-left:max(24px,env(safe-area-inset-left,0px));
+    padding-right:max(24px,env(safe-area-inset-right,0px))}
+  .gate{overflow-y:auto}
+  .gate[hidden]{display:none}
+  @media (max-height:640px){.gate-orb{width:56px;height:56px;box-shadow:0 0 0 7px var(--accent-soft)}
+    .gate-in{gap:10px}.gate h2{font-size:1.5rem}.gate-btns .btn{padding:10px}}
+  .gate-in{max-width:440px;display:grid;gap:18px;justify-items:center;text-align:center}
+  .gate-orb{width:112px;height:112px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%,var(--accent),var(--accent-ink));
+    box-shadow:0 0 0 12px var(--accent-soft);animation:breathe 3.2s ease-in-out infinite}
+  @keyframes breathe{50%{transform:scale(1.07)}}
+  .gate h2{font-size:clamp(1.9rem,6vw,2.5rem);letter-spacing:-.01em}
+  .gate p{color:var(--muted)}
+  .gate-btns{display:grid;gap:8px;width:100%;max-width:320px;justify-items:center}
+  .gate-btns .btn{width:100%;justify-content:center;font-size:1.05rem;padding:14px}
+  .linkbtn{background:none;border:0;color:var(--muted);font:inherit;font-size:.92rem;
+    text-decoration:underline;cursor:pointer;padding:6px}
+  .vbar{position:fixed;left:0;right:0;bottom:0;z-index:30;
+    padding-top:10px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));
+    padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+    background:color-mix(in srgb,var(--surface) 94%,transparent);backdrop-filter:blur(10px);
+    border-top:1px solid var(--line)}
+  .vbar-in{max-width:var(--maxw);margin-inline:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .vstat{flex:1 1 180px;min-width:0;font-size:.92rem;display:flex;align-items:center;gap:10px}
+  .vstat .pulse{animation:none;opacity:.35}
+  .vstat.live .pulse{animation:pulse 1.8s ease-in-out infinite;opacity:1}
+  .vstat .txt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+  .vb{font:inherit;font-size:.86rem;font-weight:600;padding:8px 14px;border-radius:999px;
+    border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+  .vb[aria-pressed="true"]{background:var(--accent);color:#fff;border-color:transparent}
+  .listen{margin-top:18px}
+  select.vb{max-width:190px;text-overflow:ellipsis}
+  select.vb[hidden]{display:none}
+  .stopnow{background:var(--accent);color:#fff;border-color:transparent;white-space:nowrap}
+  header .btn{white-space:nowrap}
+  @media (max-width:480px){
+    .bar{gap:8px}
+    .brand{font-size:1.1rem;gap:7px}
+    header .btn,.stopnow{padding:8px 12px;font-size:.86rem}
+  }
+  .tap{cursor:pointer;transition:border-color .15s ease,box-shadow .15s ease}
+  .tap:hover{border-color:var(--accent)}
+  .tap:focus-visible,.vb:focus-visible,.btn:focus-visible,.linkbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .speaking{border-color:var(--accent)!important;box-shadow:0 0 0 3px var(--accent-soft)}
+  footer{margin-bottom:76px}
+  section[id]{scroll-margin-top:68px}
+
+  @media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+
+<header>
+  <div class="wrap bar">
+    <div class="brand"><span class="dot"></span>BestYou</div>
+    <button class="vb stopnow" id="hStop" type="button" hidden>Stop voice</button>
+    <nav>
+      <div class="nav-links">
+        <a href="#why">Why it's different</a>
+        <a href="#features">What it does</a>
+        <a href="#voices">The voices</a>
+        <a href="#how">How it works</a>
+        <a href="#pricing">Pricing</a>
+      </div>
+      <a href="#pricing" class="btn btn-primary">Get started</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero-wrap" id="top">
+  <div class="wrap hero">
+    <div class="hero-copy">
+      <span class="eyebrow"><span class="dot" style="width:7px;height:7px;box-shadow:none"></span>AI coaching, with a real voice</span>
+      <h1>The coach that actually <em>sounds</em> like a&nbsp;person.</h1>
+      <p class="lede">BestYou is an AI coach you talk to out loud. It listens, answers in a warm human voice, and keeps your journey so you can pick up where you left off.</p>
+      <div class="cta">
+        <a href="#pricing" class="btn btn-primary">Get started →</a>
+        <a href="#how" class="btn btn-ghost">See how it works</a>
+      </div>
+      <p class="note">Talk through anything, at your own pace.</p>
     </div>
-
-    <div class="flex justify-center">
-      <a href="#waitlist" class="bg-emerald-500 hover:bg-emerald-600 text-black px-16 py-6 rounded-2xl text-3xl font-bold transition">
-        Join the Waitlist - Get Early Access
-      </a>
+    <div class="voicebox">
+      <canvas id="wave" width="760" height="760" aria-hidden="true"></canvas>
+      <div class="cap"><span class="pulse"></span>Listening, and answering in a real voice</div>
     </div>
   </div>
+</section>
 
-  <div id="waitlist" class="bg-zinc-900 py-24">
-    <div class="max-w-lg mx-auto px-6 text-center">
-      <h2 class="text-5xl font-bold mb-4">Be First In Line</h2>
-      <p class="text-2xl text-zinc-400 mb-12">
-        First 500 people get lifetime access at the lowest price.
-      </p>
+<section class="statement" id="why">
+  <div class="wrap">
+    <h2>Most AI coaches read from a script.</h2>
+    <p>You ask a real question and get a canned step back. BestYou was rebuilt to do the opposite: it hears what you actually said, responds in a natural spoken voice, and saves your journey, so it feels less like a chatbot and more like someone in your corner.</p>
+  </div>
+</section>
 
-      <form id="waitlistForm" class="space-y-6">
-        <input type="email" id="email" placeholder="your@email.com" required
-               class="w-full px-8 py-6 rounded-2xl bg-zinc-800 text-white text-xl focus:outline-none border border-zinc-700">
-        <button type="submit"
-                class="w-full bg-white text-black py-6 rounded-2xl text-2xl font-bold hover:bg-zinc-200 transition">
-          Secure My Spot Now
-        </button>
-      </form>
-      
-      <p id="message" class="mt-6 text-emerald-400 font-medium hidden">You're in! We'll send you early access details soon.</p>
-      <p class="text-zinc-500 mt-8">Spots are limited. Price increases at launch.</p>
+<section id="features">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">What it does</span>
+      <h2>Coaching that listens, speaks, and remembers</h2>
+      <p>Four things set BestYou apart from a text box that talks back.</p>
+    </div>
+    <div class="grid cols-4">
+      <article class="card">
+        <div class="ic">◍</div>
+        <h3>A real human voice</h3>
+        <p>Studio-grade voices, not the flat robotic read. It sounds like a person who's genuinely talking with you.</p>
+      </article>
+      <article class="card">
+        <div class="ic">❖</div>
+        <h3>Keeps your journey</h3>
+        <p>Your conversations are saved to your journey, so you can pick up where you left off.</p>
+      </article>
+      <article class="card">
+        <div class="ic">◐</div>
+        <h3>Reads the moment</h3>
+        <p>It picks up on your tone and meets you where you are, gentler on a hard day and direct when you want a push.</p>
+      </article>
+      <article class="card">
+        <div class="ic">✶</div>
+        <h3>Check-ins (coming soon)</h3>
+        <p>Daily check-ins that reach out to you first are next on the build list.</p>
+      </article>
     </div>
   </div>
+</section>
 
-  <script>
-    document.getElementById('waitlistForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const email = document.getElementById('email').value;
-      if (email) {
-        document.getElementById('message').classList.remove('hidden');
-        this.reset();
+<section id="voices">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">The voices</span>
+      <h2>Pick a voice that fits you</h2>
+      <p>Choose from a range of real, distinct voices, and change your mind whenever you like.</p>
+    </div>
+    <div class="grid cols-3">
+      <article class="voice">
+        <span class="tag">Warm</span>
+        <h3>Steady and encouraging</h3>
+        <p>Calm, reassuring, patient. The voice for working through the heavy things without feeling rushed.</p>
+        <div class="mini" aria-hidden="true"></div>
+      </article>
+      <article class="voice">
+        <span class="tag">Direct</span>
+        <h3>Clear and motivating</h3>
+        <p>Focused and to the point. For the days you want accountability and a straight answer.</p>
+        <div class="mini" aria-hidden="true"></div>
+      </article>
+      <article class="voice">
+        <span class="tag">Grounded</span>
+        <h3>Thoughtful and even</h3>
+        <p>Measured and unhurried. A level presence that helps you think clearly and slow down.</p>
+        <div class="mini" aria-hidden="true"></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">How it works</span>
+      <h2>Three steps, no setup to dread</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <h3>Say what's on your mind</h3>
+        <p>Open a session and just talk, the way you'd message a friend. No forms, no scripts to follow.</p>
+      </div>
+      <div class="step">
+        <h3>Hear a real response</h3>
+        <p>BestYou answers out loud in the voice you chose, responding to what you actually said.</p>
+      </div>
+      <div class="step">
+        <h3>Pick up where you left off</h3>
+        <p>Your journey is saved, so each session can build on the last.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="sec-head" style="text-align:center;max-width:46ch;margin-inline:auto">
+      <span class="kicker">Pricing</span>
+      <h2>One plan. Everything included.</h2>
+      <p>No tiers to decode. Full access to your coach for one simple price.</p>
+    </div>
+    <div class="plan">
+      <div class="plan-top">
+        <span class="plan-name">BestYou · Early access</span>
+        <div class="price"><span class="amt">$39</span><span class="per">/ month</span></div>
+        <p class="plan-sub">Cancel anytime.</p>
+      </div>
+      <ul class="plan-list">
+        <li>Spoken replies in natural human voices, with a fair daily voice allowance</li>
+        <li>Choose from several voices</li>
+        <li>Your journey saved between sessions</li>
+        <li>Talk through anything, in text or by voice</li>
+        <li>Daily check-ins (coming soon)</li>
+      </ul>
+      <a href="https://buy.stripe.com/fZu8wQa833D84WG0Bjf7i02" target="_blank" rel="noopener" class="btn btn-primary plan-cta js-buy">Get started</a>
+    </div>
+  </div>
+</section>
+
+<section class="final" id="start">
+  <div class="wrap">
+    <h2>Become your best you.</h2>
+    <p>$39 a month. Cancel anytime.</p>
+    <div class="cta" style="justify-content:center">
+      <a href="https://buy.stripe.com/fZu8wQa833D84WG0Bjf7i02" target="_blank" rel="noopener" class="btn btn-primary js-buy">Get started</a>
+    </div>
+    <div class="contact">
+      <span class="plan-sub">Questions first? Email us.</span>
+      <span class="mailpill">bestyouai@gmail.com
+        <button class="copy" id="copyBtn" title="Copy email" aria-label="Copy email">⧉</button>
+      </span>
+      <span class="copied" id="copiedMsg" role="status"></span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand" style="font-size:1.05rem"><span class="dot"></span>BestYou</div>
+    <div>© 2026 BestYou · AI coaching that sounds human</div>
+  </div>
+</footer>
+
+<div class="gate" id="gate" hidden role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+  <div class="gate-in">
+    <div class="gate-orb" aria-hidden="true"></div>
+    <h2 id="gateTitle">Hi, I'm your BestYou coach.</h2>
+    <p>Turn your sound on and I'll talk you through everything on this page. Tap any section or card and I'll explain it.</p>
+    <div class="gate-btns">
+      <button class="btn btn-primary" id="enterVoice" type="button">Enter with voice</button>
+      <button class="linkbtn" id="enterQuiet" type="button">Enter without sound</button>
+    </div>
+  </div>
+</div>
+
+<div class="vbar" id="vbar" role="region" aria-label="Voice controls">
+  <div class="vbar-in">
+    <div class="vstat" id="vstat" aria-live="polite"><span class="pulse" id="vdot"></span><span class="txt" id="vtxt">Voice is off</span></div>
+    <select class="vb" id="vVoice" aria-label="Choose the reading voice" title="Choose the reading voice"></select>
+    <button class="vb" id="vTour" type="button">Tour the page</button>
+    <button class="vb" id="vPause" type="button">Pause</button>
+    <button class="vb" id="vStop" type="button">Stop</button>
+    <button class="vb" id="vToggle" type="button" aria-pressed="false">Voice on</button>
+  </div>
+</div>
+
+<script>
+  // Hero waveform — a calm, voice-like animation drawn to canvas.
+  (function(){
+    var c=document.getElementById('wave');if(!c)return;var x=c.getContext('2d');
+    var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    function accent(){return getComputedStyle(document.documentElement).getPropertyValue('--accent').trim()||'#DC4E2B';}
+    var W=c.width,H=c.height,t=0;
+    function draw(){
+      x.clearRect(0,0,W,H);
+      var cx=W/2,cy=H/2,bars=46,col=accent();
+      for(var ring=0;ring<3;ring++){
+        x.globalAlpha=0.10-ring*0.025;x.strokeStyle=col;x.lineWidth=2;
+        x.beginPath();x.arc(cx,cy,120+ring*70,0,Math.PI*2);x.stroke();
       }
+      x.globalAlpha=1;
+      for(var i=0;i<bars;i++){
+        var a=(i/bars)*Math.PI*2;
+        var amp=40+Math.sin(t/22+i*0.5)*26+Math.sin(t/9+i)*16;
+        var r0=150, r1=150+Math.max(10,amp);
+        x.strokeStyle=col;x.globalAlpha=0.35+0.5*Math.abs(Math.sin(t/22+i*0.5));
+        x.lineWidth=5;x.lineCap='round';
+        x.beginPath();
+        x.moveTo(cx+Math.cos(a)*r0,cy+Math.sin(a)*r0);
+        x.lineTo(cx+Math.cos(a)*r1,cy+Math.sin(a)*r1);
+        x.stroke();
+      }
+      x.globalAlpha=1;
+      var pr=170+Math.sin(t/16)*8;
+      var g=x.createRadialGradient(cx,cy,0,cx,cy,pr);
+      g.addColorStop(0,col);g.addColorStop(1,'transparent');
+      x.fillStyle=g;x.globalAlpha=0.25;x.beginPath();x.arc(cx,cy,pr,0,Math.PI*2);x.fill();
+      x.globalAlpha=1;
+      t+=1;if(!reduce)requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+
+  // Mini bars inside voice cards
+  (function(){
+    document.querySelectorAll('.mini').forEach(function(m){
+      for(var i=0;i<28;i++){var b=document.createElement('i');
+        var h=20+Math.round(80*Math.abs(Math.sin(i*1.3)));
+        b.style.height=h+'%';b.style.opacity=(0.3+0.5*Math.abs(Math.sin(i*0.7))).toFixed(2);
+        m.appendChild(b);}
     });
-  </script>
-</body>
+  })();
+
+  // Copy email
+  (function(){
+    var btn=document.getElementById('copyBtn'),msg=document.getElementById('copiedMsg');
+    if(!btn)return;
+    btn.addEventListener('click',function(){
+      var email='bestyouai@gmail.com';
+      function ok(){msg.textContent='Copied to clipboard';setTimeout(function(){msg.textContent='';},2200);}
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(email).then(ok).catch(function(){msg.textContent='Select and copy: '+email;});
+      }else{msg.textContent='Select and copy: '+email;}
+    });
+  })();
+</script>
+
+<script>
+  // Spoken tour: the page reads sections and cards aloud with the device's built-in voice.
+  (function(){
+    var synth=window.speechSynthesis;
+    var hasSpeech=!!(synth&&window.SpeechSynthesisUtterance);
+    var gate=document.getElementById('gate'),stat=document.getElementById('vstat'),txt=document.getElementById('vtxt');
+    var bTour=document.getElementById('vTour'),bPause=document.getElementById('vPause'),
+        bStop=document.getElementById('vStop'),bToggle=document.getElementById('vToggle');
+    var on=false,run=0,tourRun=0,paused=false,lit=null,style='warm',pool=[];
+    var hStop=document.getElementById('hStop'),cur=null;
+
+    var NAMES={top:'Welcome',why:'Why it is different',features:'What it does',voices:'The voices',
+      how:'How it works',pricing:'Pricing',start:'Get started'};
+    var ORDER=['top','why','features','voices','how','pricing','start'];
+    var SAY={
+      top:"Hi, I'm your BestYou coach. BestYou is an AI coach you talk to out loud. I listen to what you actually say, answer in a natural voice, and keep your journey, so you can pick up where you left off. Tap any section or card and I'll explain it. Or press Tour the page, and I'll take you through everything.",
+      why:"Most AI coaches read from a script. You ask a real question and get a canned step back. BestYou was rebuilt to do the opposite. It responds to what you actually said, in a spoken voice, and it saves your journey, so it feels less like a chatbot and more like someone in your corner.",
+      features:"Here's what BestYou does. First, a real human voice, so it sounds like a person rather than a robot. Second, it keeps your journey, so your conversations are saved and you can pick up where you left off. Third, it reads the moment. It picks up on your tone, so it can be gentler on a hard day and more direct when you want a push. And fourth, daily check-ins that reach out to you first. That one is coming soon.",
+      voices:"You can pick a voice that fits you. Warm is calm, reassuring and patient, for working through the heavy things. Direct is clear and motivating, for the days you want accountability. Grounded is measured and unhurried, to help you slow down and think. Tap any voice card to hear a sample.",
+      how:"It works in three steps. One, say what's on your mind. Just talk, the way you'd message a friend. Two, hear a real response, out loud, in the voice you chose. Three, pick up where you left off. Your journey is saved, so each session can build on the last.",
+      pricing:"Pricing is simple. One plan, thirty nine dollars a month, and you can cancel anytime. It includes spoken replies in natural human voices, with a fair daily voice allowance. You can choose from several voices, and your journey is saved between sessions. You can talk through anything, in text or by voice. Daily check-ins are coming soon. The Get started button goes to a secure Stripe checkout.",
+      start:"Ready when you are. It's thirty nine dollars a month, and you can cancel anytime. If you have questions first, the email address is just below."
+    };
+    // One steady narrator at normal speed and pitch. The picker lets the visitor choose which device voice reads.
+    var MAIN={rate:1,pitch:1},chosen='',audio=null;
+    // Real ElevenLabs recordings for the three voice cards (filled in at build time).
+    var REAL=/*REAL_START*/{"warm":"voice-samples/rachel.mp3","direct":"voice-samples/george.mp3","grounded":"voice-samples/brian.mp3"}/*REAL_END*/;
+    var NARR=/*NARR_START*/{"card-a-real-human-voice":"narration/card-a-real-human-voice.mp3","card-check-ins-coming-soon":"narration/card-check-ins-coming-soon.mp3","card-hear-a-real-response":"narration/card-hear-a-real-response.mp3","card-keeps-your-journey":"narration/card-keeps-your-journey.mp3","card-pick-up-where-you-left-off":"narration/card-pick-up-where-you-left-off.mp3","card-reads-the-moment":"narration/card-reads-the-moment.mp3","card-say-what-s-on-your-mind":"narration/card-say-what-s-on-your-mind.mp3","sec-features":"narration/sec-features.mp3","sec-how":"narration/sec-how.mp3","sec-pricing":"narration/sec-pricing.mp3","sec-start":"narration/sec-start.mp3","sec-top":"narration/sec-top.mp3","sec-voices":"narration/sec-voices.mp3","sec-why":"narration/sec-why.mp3"}/*NARR_END*/;
+
+    function score(v){var n=v.name.toLowerCase(),s=0;
+      if(/premium|enhanced|natural|neural/.test(n))s+=6;
+      if(/en[-_]au/i.test(v.lang))s+=3;else if(/en[-_](gb|us|nz|ie|za)/i.test(v.lang))s+=1;
+      if(v.localService)s+=1;return s;}
+    function loadVoices(){
+      if(!hasSpeech)return;
+      var novelty=/compact|albert|bad news|bahh|bells|boing|bubbles|cellos|good news|jester|organ|superstar|trinoids|whisper|wobble|zarvox|fred|junior|kathy|ralph|princess/i;
+      pool=synth.getVoices().filter(function(v){return /^en/i.test(v.lang)&&!novelty.test(v.name);})
+        .sort(function(a,b){return score(b)-score(a);});
+      buildPicker();
+    }
+    function mainVoice(){
+      if(chosen){for(var i=0;i<pool.length;i++)if(pool[i].name===chosen)return pool[i];}
+      return pool[0]||null;
+    }
+    function buildPicker(){
+      var sel=document.getElementById('vVoice');if(!sel)return;
+      var list=pool.slice(0,40);sel.innerHTML='';
+      list.forEach(function(v){var o=document.createElement('option');o.value=v.name;
+        o.textContent=v.name+' ('+v.lang.replace('_','-')+')';sel.appendChild(o);});
+      if(list.length)sel.value=chosen||list[0].name;
+    }
+
+    function setLive(live,label){stat.classList.toggle('live',live);hStop.hidden=!live;txt.textContent=live?('Speaking: '+label):label;}
+    function chunks(t){return(t.replace(/\s+/g,' ').match(/[^.!?]+[.!?]*/g)||[t]).map(function(s){return s.trim();}).filter(Boolean);}
+    function halt(){
+      run++;cur=null;if(audio){try{audio.pause();}catch(e){}audio=null;}
+      if(hasSpeech)synth.cancel();paused=false;bPause.textContent='Pause';
+      if(lit){lit.classList.remove('speaking');lit=null;}
+    }
+    // Real recorded voice first. The device voice is only the backup, if there is no recording or it cannot play.
+    function speak(text,label,done,key){
+      if(key&&NARR[key]){clip(NARR[key],text,label,done);return;}
+      speakDevice(text,label,done);
+    }
+    function clip(url,text,label,done){
+      halt();var a=new Audio(url);audio=a;
+      setLive(true,label);
+      a.onended=function(){
+        if(audio!==a)return;
+        audio=null;cur=null;setLive(false,'Done. Tap any section or card to hear more.');
+        if(lit){lit.classList.remove('speaking');lit=null;}
+        if(done)done();
+      };
+      var p=a.play();
+      if(p&&p.catch)p.catch(function(){if(audio===a){audio=null;speakDevice(text,label,done);}});
+    }
+    function speakDevice(text,label,done){
+      if(!hasSpeech){setLive(false,'This browser cannot read aloud. Try Safari or Chrome.');return;}
+      halt();var token=++run,parts=chunks(text),i=0;
+      setLive(true,label);
+      setTimeout(function(){
+        (function next(){
+          if(token!==run)return;
+          if(i>=parts.length){
+            setLive(false,'Done. Tap any section or card to hear more.');
+            if(lit){lit.classList.remove('speaking');lit=null;}
+            if(done)done();return;
+          }
+          var u=new SpeechSynthesisUtterance(parts[i++]),v=mainVoice();
+          if(v){u.voice=v;u.lang=v.lang;}
+          u.rate=MAIN.rate;u.pitch=MAIN.pitch;u.onend=next;
+          u.onerror=function(e){
+            if(token!==run||e.error==='interrupted'||e.error==='canceled')return;
+            setLive(false,'Your browser blocked the sound. Use the Turn voice on button, then try again.');
+          };
+          synth.speak(u);
+        })();
+      },80);
+    }
+    function turnOn(){on=true;bToggle.setAttribute('aria-pressed','true');bToggle.textContent='Mute voice';}
+    function stopAll(){tourRun++;halt();setLive(false,'Stopped. Tap any section or card to hear more.');}
+    function play(text,label,el,key){
+      // Tapping the item that is already talking stops it, instead of restarting it from the top.
+      if(cur===label&&(audio||(hasSpeech&&synth.speaking))){stopAll();return;}
+      tourRun++;turnOn();speak(text,label,null,key);cur=label;
+      if(el){lit=el;el.classList.add('speaking');}
+    }
+    function goTo(id){var el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}
+    function tour(){
+      turnOn();var t=++tourRun,n=0;
+      (function step(){
+        if(t!==tourRun)return;
+        if(n>=ORDER.length){setLive(false,'Tour finished.');return;}
+        var id=ORDER[n++];goTo(id);
+        speak(SAY[id],NAMES[id],function(){if(t===tourRun)setTimeout(step,450);},'sec-'+id);
+      })();
+    }
+
+    if(!hasSpeech){
+      txt.textContent='This browser cannot read aloud. Try Safari or Chrome.';
+      document.getElementById('vVoice').hidden=true;
+      [bTour,bPause,bStop,bToggle].forEach(function(b){b.disabled=true;});
+    }else{
+      try{chosen=localStorage.getItem('bestyou-voice')||'';}catch(e){}
+      loadVoices();synth.onvoiceschanged=loadVoices;gate.hidden=false;
+      document.getElementById('enterVoice').focus();
+    }
+
+    document.getElementById('enterVoice').addEventListener('click',function(){
+      gate.hidden=true;play(SAY.top,NAMES.top,null,'sec-top');
+    });
+    document.getElementById('enterQuiet').addEventListener('click',function(){
+      gate.hidden=true;setLive(false,'Voice is off. Use the Turn voice on button.');
+    });
+    document.addEventListener('keydown',function(e){
+      if(e.key!=='Escape')return;
+      if(!gate.hidden){gate.hidden=true;setLive(false,'Voice is off. Use the Turn voice on button.');}
+      else stopAll();
+    });
+    // Leaving the tab or the page stops the voice.
+    document.addEventListener('visibilitychange',function(){if(document.hidden&&hasSpeech)stopAll();});
+    window.addEventListener('pagehide',function(){if(hasSpeech)synth.cancel();});
+    bTour.addEventListener('click',tour);
+    bStop.addEventListener('click',stopAll);
+    hStop.addEventListener('click',stopAll);
+    bPause.addEventListener('click',function(){
+      if(audio){
+        if(audio.paused){audio.play();bPause.textContent='Pause';}
+        else{audio.pause();bPause.textContent='Resume';}
+        return;
+      }
+      if(!hasSpeech)return;
+      if(synth.speaking&&!paused){synth.pause();paused=true;bPause.textContent='Resume';}
+      else if(paused){synth.resume();paused=false;bPause.textContent='Pause';}
+    });
+    bToggle.addEventListener('click',function(){
+      if(on){on=false;tourRun++;halt();bToggle.setAttribute('aria-pressed','false');bToggle.textContent='Turn voice on';
+        setLive(false,'Voice is off. Use the Turn voice on button.');}
+      else{turnOn();setLive(false,'Voice is on. Tap any section or card to hear it.');}
+    });
+    bToggle.textContent='Turn voice on';
+
+    // Voice cards play a real recording. Falls back to reading the card if the audio cannot play.
+    function playReal(k,label,el,fallbackText){
+      if(cur===label&&audio){stopAll();return;}
+      tourRun++;turnOn();halt();
+      var a=new Audio(REAL[k]);audio=a;cur=label;
+      setLive(true,label+' (sample)');
+      if(el){lit=el;el.classList.add('speaking');}
+      a.onended=function(){
+        if(audio!==a)return;
+        audio=null;cur=null;setLive(false,'Done. Tap any section or card to hear more.');
+        if(lit){lit.classList.remove('speaking');lit=null;}
+      };
+      var p=a.play();
+      if(p&&p.catch)p.catch(function(){if(audio===a){audio=null;play(fallbackText,label,el);}});
+    }
+    var picker=document.getElementById('vVoice');
+    if(picker)picker.addEventListener('change',function(){
+      chosen=picker.value;
+      try{localStorage.setItem('bestyou-voice',chosen);}catch(e){}
+      play("This is how I sound. If you like this voice, keep it.",'Voice test');
+    });
+
+    // Top menu and buttons: scroll there, and talk if the voice is on.
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+      a.addEventListener('click',function(){
+        var id=a.getAttribute('href').slice(1);
+        if(on&&SAY[id])setTimeout(function(){play(SAY[id],NAMES[id],null,'sec-'+id);},250);
+      });
+    });
+    // "Listen" button in each section header.
+    ['why','features','voices','how','pricing'].forEach(function(id){
+      var sec=document.getElementById(id);if(!sec)return;
+      var host=sec.querySelector('.sec-head')||sec.querySelector('.wrap');
+      var b=document.createElement('button');b.type='button';b.className='vb listen';
+      b.textContent='Listen to this section';
+      b.addEventListener('click',function(){play(SAY[id],NAMES[id],null,'sec-'+id);});
+      host.appendChild(b);
+    });
+    // Every card reads itself out when tapped.
+    document.querySelectorAll('.card,.voice,.step,.plan').forEach(function(el){
+      el.classList.add('tap');el.tabIndex=0;el.setAttribute('role','button');
+      function go(){
+        var h=el.querySelector('h3'),p=el.querySelector('p'),label=h?h.textContent.trim():'Pricing',k;
+        if(el.classList.contains('plan')){play(SAY.pricing,NAMES.pricing,el,'sec-pricing');return;}
+        var text=(h?h.textContent.trim()+'. ':'')+(p?p.textContent.trim():'');
+        if(el.classList.contains('voice')){
+          var tag=el.querySelector('.tag');k=tag?tag.textContent.trim().toLowerCase():'warm';
+          if(REAL[k]){playReal(k,label,el,text);return;}
+        }
+        play(text,label,el,'card-'+label.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''));
+      }
+      el.addEventListener('click',go);
+      el.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});
+    });
+  })();
+</script>
+
 </html>
